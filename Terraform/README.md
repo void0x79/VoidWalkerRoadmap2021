@@ -1,0 +1,1 @@
+This is a starter mono repo to hold various cloud agnostic projects.
