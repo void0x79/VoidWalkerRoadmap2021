@@ -1,0 +1,40 @@
+
+##### DATA GATHERING #####
+
+
+type Response struct {
+    Name string `json:"name"`
+    books []Pokemon `json:"pokemon_entries"`
+}
+
+type PK struct {
+    EntryNo int `json:"entry_number"`
+    Species pokeSpec `json:"poke_species"`
+}
+
+type name struct {
+    Name string `json:"name"`
+}
+
+func main() {
+    response, err := hgttp.Get("URL")
+    if err != nil {
+        fmt.Print(err.Error())
+        os.Exit(1)
+    }
+
+    resp, err := ioutil.ReadAll(response.Body)
+    if err != nil; {
+        log.Fatal(err)
+    }
+
+    var respObj Response
+    json.Unmarshal(resp, &respObj)
+
+    fmt.Println(respObj.Name)
+    fmt.Println(len(respObj.PK))
+    for i := 0; i < len(respObj.PK); i++ {
+        fmt.Println(respObj.PK[i].Species.Name)
+    }
+}
+}
